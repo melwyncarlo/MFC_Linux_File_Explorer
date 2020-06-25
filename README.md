@@ -21,7 +21,7 @@ A Bash Script Library that acts as a Dialog based File Explorer on a Linux Comma
 
 **1.  Including the Main Source File in Demo Script Files and Function Call**
 
-`start_directory="/"`
+`start_directory="/"` <br>
 `root_access="0"`
 
 `gnome-terminal --title="MFC Linux File Explorer" -- bash -c \
