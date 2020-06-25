@@ -4,88 +4,63 @@
 A Bash Script Library that acts as a Dialog based File Explorer on a Linux Command Terminal (CUI).
 
 <br><br>
-### This repository contains 5 MAIN files :
+### This repository contains 4 MAIN files :
 <pre>
-1.  webdatacapture.sh                         =>  Main Source (Library) File
+1.  mfc_linux_fileexplorer.sh                 =>  Main Source (Library) File
 2.  *headerdesign.sh                          =>  Supplementary Library File
-3.  dailyreading_webdatacapture_demo.shh      =>  Demo 1 File
-4.  currencyconverter_webdatacapture_demo.sh  =>  Demo 2 File
-5.  webdatacapture_demo_output.txt            =>  Youtube links to the outputs of Demos 1 and 2
+3.  fileexplorer_demo_1.sh                    =>  Demo 1 File
+4.  fileexplorer_demo_2.sh                    =>  Demo 2 File
+5.  mfc_linux_fileexplorer_demo_output.txt    =>  Youtube links to the outputs of Demos 1 and 2
 
 * REF - https://github.com/melwyncarlo/Bash_Header_Design
   For Designing CUI-based Heading Banners
 </pre>
 
 <br><br>
-### The source library contains 2 MAIN functions. <br>Given below are function calls and descriptive lists of arguments :
+### The source library contains 1 MAIN function. <br>Given below is a sample function call and descriptive lists of arguments :
 
-**1.  Including the Main Source File in Demo Script Files**
+**1.  Including the Main Source File in Demo Script Files and Function Call**
 
-`webdata_directory="data"`
+`start_directory="/"`
+`root_access="0"`
 
-`source src/webdatacapture.sh "$webdata_directory/"`
+`gnome-terminal --title="MFC Linux File Explorer" -- bash -c \
+'source src/mfc_linux_fileexplorer.sh 24 80 37 150; mfc_fileexplore "$start_directory" "0" "0" "0" "0" "0" "1" "1" "load" "$root_access"'`
 
 <ins>NOTE :</ins>
 - _The main source file is located in the 'src' directory._
-- _The argument denotes that downloaded data will be stored in the 'data' directory._
-- _Don't forget to add the ending '/' in the argument. (e.g. 'data/' is valid; but 'data' is not)_
-- _If the variable `webdata_directory=""`, then the application directory will be used._
+- _All temporary data and result based data will be stored in the 'src/bin' directory._
+- _This application is meant to be used on a separate terminal window which is temporarily allocated._
+- _If the variable `start_directory=""`, then the user's 'Home' directory will be used._
+- _If the variable `start_directory="/"`, it implies the 'Root' directory._
+- _If the variable `root_access="0"`, then certain locked files and folders cannot be selected._
+- _If the variable `root_access="1"`, then a password will be requested to access root._
+- _The values `24 80 37 150` are the inputted heights and widths of the command terminal for Simple and Complete modes respectively._
+- _The values `24 80 37 150` must be within the limits as prescribed at the top of the main source file._
 <br>
 
-`url="SOME_WEBSITE_ADDRESS"` <br>
-`sorted_contents_directory="$webdata_directory"` <br>
-`sorted_contents_filename="stuff"` <br>
+**2.  List of Arguments**
 
-`startClues=("Tag1" "Tag2" "Tag3")` <br>
-`endClues=("Tag1" "Tag2" "Tag3")` <br><br>
-
-<ins>NOTE :</ins>
-- _Start Tags may be of the form ' ... Some Text ... <TAG> ... Some Text ... '._
-- _End Tags may be of the form ' ... Some Text ... </TAG> ... Some Text ... '._
-- _'Some Text' may not exist in some cases._
-- _'TAG' is meant to be replaced with actual HTML tag names._
-- _In some cases, simply text may be used instead of tags._
-- _All this depends on the required contents and their placement in the webpage soruce file_
-<br>
-
-**2.  Function Calls**
-
-`mfc_getwebdata "$url" "1" "0" "1" "1" "0" "0" "$sorted_contents_directory" \ `<br>
-`"$sorted_contents_filename" "${startClues[@]}" "${endClues[@]}"`
-
-To obtain result : `$mfc_getwebdata_success` <br>
-_OR_ <br>
-Read the file `mfc_getwebdata_success.txt` in the directory named in `$webdata_directory` <br>
-_[ If '1', it implies Success; if '0', it implies Failure. ]_<br><br>
-
-`mfc_removetags "$sorted_contents_directory" "$sorted_contents_filename" "0" "0" ` <br>
-
-To obtain result : `$mfc_removetags_success` <br>
-_OR_ <br>
-Read the file `mfc_removetags_success.txt` in the directory named in `$webdata_directory` <br>
-_[ If '1', it implies Success; if '0', it implies Failure. ]_<br><br>
-
-To know how old the file is : `$mfc_time`, `$mfc_time_code` and `$mfc_time_text` <br>
-_OR_ <br>
-Read the file `mfc_time.txt`, `mfc_time_code.txt` and `mfc_time_text.txt` in the directory <br>
-named in `$webdata_directory` <br><br>
-`$mfc_time` contains the time in seconds in numerical format. <br><br>
-`$mfc_time_code` contains the time in the following format : <br>
-<pre>Xs, Xmin, Xh, Xd, or Xm.</pre>
-Where, 'X' is a number and : <br>
 <pre>
-s   =>  seconds
-min =>  minutes
-h   =>  hours
-d   =>  days
-m   =>  months
-</pre> <br>
-`$mfc_time_text` contains the time in the following format : <br>
-<pre>X second(s), X minute(s), X hours(s), X day(s), or X month(s).</pre>
-Where, 'X' is a number. <br><br>
+mfc_fileexplore       -->   Parameter 1 - Start Directory
+                            Parameter 2 - Complete Mode Options Mode
+                            Parameter 3 - Complete Mode
+                            Parameter 4 - Show Hidden Files Options Mode
+                            Parameter 5 - Show Hidden Files Mode
+                            Parameter 6 - Show Only ... Options Mode
+                            Parameter 7 - Show Only ... Mode ( 1 => Files; 2 => Folders; 3 => Both )
+                            Parameter 8 - Allow Multiple Selection Mode
+                            Parameter 9 - File Explorer Action Text
+                            Parameter 10 - Root Access Mode
+</pre>
 
 <ins>NOTE :</ins>
-- _Read the resultant files and variables immediately after calling the functions._
+- _Unless otherwise stated, in mode arguments, an input value of 1 is ON, and 0 is OFF._
+- _Simple Mode is a smaller version with less visible details, whereas Complete Mode includes all details and is larger._
+- _Options Mode implies whether the relevant options are to be made available for the user to switch._
+- _If Parameter 8 is OFF, then only one file can be selected per dialog session._
+- _If Parameter 8 is ON, then multiple files (within a particular folder) can be selected per dialog session._
+
 
 <br><br>
 ### For any other queries :
