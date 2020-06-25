@@ -86,7 +86,6 @@ Where, 'X' is a number. <br><br>
 
 <ins>NOTE :</ins>
 - _Read the resultant files and variables immediately after calling the functions._
-<br>
 
 <br><br>
 ### For any other queries :
