@@ -60,7 +60,29 @@ mfc_fileexplore       -->   Parameter 1 - Start Directory
 - _Options Mode implies whether the relevant options are to be made available for the user to switch._
 - _If Parameter 8 is OFF, then only one file can be selected per dialog session._
 - _If Parameter 8 is ON, then multiple files (within a particular folder) can be selected per dialog session._
+<br>
 
+**4.  List of Results**
+
+These results can be accessed :
+
+1. as Variables
+<pre>
+mfc_fileexplorer_exit     :   0   => Process is Running
+                              1   => Process has terminated Sucessfully
+                             -1   => Proces has terminated Unsuccessfully
+mfc_fileexplorer_dirpath  :   Contains the parent directory name and path of the select file(s) or folder(s)
+mfc_fileexplorer_filename :   Contains the names of the selected file(s) or folder(s)
+mfc_fileexplorer_filepath :   Concatenation of the Parent Directory Path and the Filename
+</pre>
+
+2. in Text Files
+<pre>
+src/bin/mfc_fileexplorer_exit.txt
+src/bin/mfc_fileexplorer_dirpath.txt
+src/bin/mfc_fileexplorer_filename.txt
+src/bin/mfc_fileexplorer_filepath.txt
+</pre>
 
 <br><br>
 ### For any other queries :
