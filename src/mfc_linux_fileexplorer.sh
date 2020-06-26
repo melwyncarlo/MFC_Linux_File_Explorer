@@ -1169,7 +1169,7 @@ mfc_fileexplore()
 							tmpStr1="---"
 							for tmpElem in ${filenameArr[@]}
 							do
-								if [ ${#menuselection} -gt 25 ]; then
+								if [ ${#menuselection} -gt $MFC_DISPLAY_FILENAME_LENGTH ]; then
 									tmpStr3="${menuselection:1:$MFC_DISP_SHORT_FN_HALF_LEN}"
 									tmpStr4="$((${#menuselection}-$MFC_DISP_SHORT_FN_HALF_LEN))"
 									tmpStr5="${menuselection:$tmpStr4:$MFC_DISP_SHORT_FN_HALF_LEN}"
