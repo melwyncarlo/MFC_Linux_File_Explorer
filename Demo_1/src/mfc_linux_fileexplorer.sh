@@ -1321,9 +1321,11 @@ mfc_fileexplore()
 								else
 									if [ $rootdirmode -eq 1 ]; then
 										mfc_fileexplorer_dirpath="/"
+										tmpStr1=""
 										tmpStr3=""
 									else
-										mfc_fileexplorer_dirpath="$curdir/$dirnme"
+										mfc_fileexplorer_dirpath="$curdir"
+										tmpStr1="$dirnme"
 										tmpStr3="/"
 									fi
 									echo "$mfc_fileexplorer_dirpath" > "src/bin/mfc_fileexplorer_dirpath.txt"
